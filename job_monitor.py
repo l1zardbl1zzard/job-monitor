@@ -31,11 +31,25 @@ GREENHOUSE_COMPANIES = {
     "duolingo": "Duolingo",
     "dropbox": "Dropbox",
     "allbirds": "Allbirds",
+    "reformation": "Reformation",
+    "renttherunway": "Rent the Runway",
+    "warbyparker": "Warby Parker",
+    "everlane": "Everlane",
+    "olaplexcareers": "Olaplex",
+    "klaviyojobs": "Klaviyo",
+    "faire": "Faire",
+    "robinhood": "Robinhood",
+    "doordashusa": "DoorDash",
 }
 
 # Ashby boards: https://api.ashbyhq.com/posting-api/job-board/{slug}
 ASHBY_COMPANIES = {
     "notion": "Notion",
+}
+
+# Lever boards: https://api.lever.co/v0/postings/{slug}?mode=json
+LEVER_COMPANIES = {
+    "elfbeauty": "e.l.f. Beauty",
 }
 
 # Workday tenants need their own tenant/site ID and a POST request rather
@@ -145,6 +159,30 @@ def fetch_ashby(slug: str, company_name: str) -> list[dict]:
     return jobs
 
 
+def fetch_lever(slug: str, company_name: str) -> list[dict]:
+    url = f"https://api.lever.co/v0/postings/{slug}?mode=json"
+    try:
+        resp = requests.get(url, timeout=15)
+        resp.raise_for_status()
+    except requests.RequestException as e:
+        print(f"  [warn] Lever fetch failed for {company_name}: {e}", file=sys.stderr)
+        return []
+
+    jobs = []
+    for job in resp.json():
+        title = job.get("text", "")
+        location = (job.get("categories") or {}).get("location", "")
+        if title_matches(title) and location_matches(location):
+            jobs.append({
+                "id": f"lever-{slug}-{job.get('id')}",
+                "company": company_name,
+                "title": title,
+                "location": location,
+                "url": job.get("hostedUrl", ""),
+            })
+    return jobs
+
+
 def load_seen() -> dict:
     if STATE_FILE.exists():
         return json.loads(STATE_FILE.read_text())
@@ -197,6 +235,12 @@ def main():
     print("Checking Ashby companies...")
     for slug, name in ASHBY_COMPANIES.items():
         jobs = fetch_ashby(slug, name)
+        print(f"  {name}: {len(jobs)} matching")
+        all_jobs.extend(jobs)
+
+    print("Checking Lever companies...")
+    for slug, name in LEVER_COMPANIES.items():
+        jobs = fetch_lever(slug, name)
         print(f"  {name}: {len(jobs)} matching")
         all_jobs.extend(jobs)
 
