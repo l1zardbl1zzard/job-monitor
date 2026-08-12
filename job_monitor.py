@@ -40,11 +40,32 @@ GREENHOUSE_COMPANIES = {
     "faire": "Faire",
     "robinhood": "Robinhood",
     "doordashusa": "DoorDash",
+    "airbnb": "Airbnb",
+    "pinterestjobadvertisements": "Pinterest",
+    "miro": "Miro",
+    "asana": "Asana",
+    "hubspotjobs": "HubSpot",
+    "webflow": "Webflow",
+    "intercom": "Intercom",
+    "riotgames": "Riot Games",
+    "instacart": "Instacart",
+    "oura": "Oura",
+    "stitchfix": "Stitch Fix",
+    "chime": "Chime",
+    "affirm": "Affirm",
+    "hs": "Headspace",
+    "calm": "Calm",
+    "attentive": "Attentive",
+    "life360": "Life360",
+    "eventbriteinc": "Eventbrite",
+    "discord": "Discord",
+    "grammarly": "Grammarly",
 }
 
 # Ashby boards: https://api.ashbyhq.com/posting-api/job-board/{slug}
 ASHBY_COMPANIES = {
     "notion": "Notion",
+    "patreon": "Patreon",
 }
 
 # Lever boards: https://api.lever.co/v0/postings/{slug}?mode=json
@@ -71,6 +92,9 @@ INCLUDE_KEYWORDS = [
     "design ops",
     "creative producer",
     "marketing manager",
+    "producer",
+    "web experience",
+    "web experience manager",
 ]
 
 EXCLUDE_KEYWORDS = [
@@ -81,8 +105,10 @@ EXCLUDE_KEYWORDS = [
 LOCATION_KEYWORDS = [
     "new york",
     "nyc",
+    "new york city",
     "san francisco",
     "remote",
+    "bay area",
 ]
 
 # Reject if location contains one of these, even if it also matched
