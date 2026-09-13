@@ -60,12 +60,39 @@ GREENHOUSE_COMPANIES = {
     "eventbriteinc": "Eventbrite",
     "discord": "Discord",
     "grammarly": "Grammarly",
+    "mavenclinic": "Maven Clinic",
+    "ag1": "AG1",
+    "noomgrowth": "Noom",
+    "kickstarter": "Kickstarter",
+    "peloton": "Peloton",
+    "block": "Cash App (Block)",
+    "supergoop": "Supergoop",
+    "quip": "quip",
+    "epicgames": "Epic Games",
+    "anthropic": "Anthropic",
+    "scaleai": "Scale AI",
+    "stripe": "Stripe",
+    "coinbase": "Coinbase",
+    "wise": "Wise",
+    "circle": "Circle",
+    "databricks": "Databricks",
+    "generalcatalyst": "General Catalyst",
 }
 
 # Ashby boards: https://api.ashbyhq.com/posting-api/job-board/{slug}
 ASHBY_COMPANIES = {
     "notion": "Notion",
     "patreon": "Patreon",
+    "hims-and-hers": "Hims & Hers",
+    "openai": "OpenAI",
+    "perplexity": "Perplexity",
+    "cohere": "Cohere",
+    "ramp": "Ramp",
+    "brex": "Brex",
+    "mercury": "Mercury",
+    "plaid": "Plaid",
+    "deel": "Deel",
+    "marqeta": "Marqeta",
 }
 
 # Lever boards: https://api.lever.co/v0/postings/{slug}?mode=json
